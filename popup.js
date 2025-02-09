@@ -38,10 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // Function to toggle script in the active tab
 function toggleAutoSkip(enabled) {
     if (!enabled) {
-        console.log("Auto-Skip Disabled");
         window.autoSkipEnabled = false;
     } else {
-        console.log("Auto-Skip Enabled");
         window.autoSkipEnabled = true;
     }
 }

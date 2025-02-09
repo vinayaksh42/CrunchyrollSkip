@@ -5,7 +5,6 @@
     "description": "Automatically clicks the Skip Intro and Skip Credits buttons on Crunchyroll.",
     "permissions": ["scripting", "activeTab", "storage"],
     "host_permissions": [
-        "https://www.crunchyroll.com/*",
         "https://static.crunchyroll.com/*"
     ],
     "background": {
@@ -18,11 +17,6 @@
         }
     },
     "content_scripts": [
-        {
-            "matches": ["https://www.crunchyroll.com/*"],
-            "js": ["script.js"],
-            "run_at": "document_idle"
-        },
         {
             "matches": ["https://static.crunchyroll.com/*"],
             "js": ["iframeScript.js"],

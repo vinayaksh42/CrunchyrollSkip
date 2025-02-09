@@ -5,15 +5,14 @@ let autoSkipEnabled = false;
 // Function to find the #vilos element
 function detectVilosPlayer() {
     // Load the stored setting
-
-    // if (!autoSkipEnabled) return; // Exit if disabled
+    chrome.storage.sync.get("autoSkipEnabled").then((data) => {
+        autoSkipEnabled = data.autoSkipEnabled;
+    });
+    if (!autoSkipEnabled) return; // Exit if disabled
     const skipButton = document.querySelector('[data-testid="skipIntroText"]');
 
     if (skipButton) {
-        console.log("✅ Found SkipButton inside iframe:", skipButton);
         skipButton.click();
-    } else {
-        console.log("⛔ SkipButton not found inside iframe.");
     }
 }
 
