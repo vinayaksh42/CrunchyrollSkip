@@ -1,6 +1,6 @@
 # Crunchyroll Auto-Skip
 
-![Crunchyroll Auto-Skip](icon.png) *(Replace with an actual image if available)*
+![Crunchyroll Auto-Skip](icon.png)
 
 ## 📌 Overview
 **Crunchyroll Auto-Skip** is a Chrome extension that **automatically clicks the Skip Intro and Skip Credits buttons** while watching anime on Crunchyroll. It also includes a toggle button to enable or disable the auto-skip feature.
