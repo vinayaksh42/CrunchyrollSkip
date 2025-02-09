@@ -59,7 +59,7 @@ Since this is not yet published on the Chrome Web Store, you need to install it 
 ---
 
 ## 📜 License
-This project is licensed under the **MIT License**. Feel free to modify and improve it!
+This project is licensed under the **Apache License**. Feel free to modify and improve it!
 
 ---
 
