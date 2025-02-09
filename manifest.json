@@ -1,0 +1,36 @@
+{
+    "manifest_version": 3,
+    "name": "Crunchyroll Auto-Skip",
+    "version": "1.1",
+    "description": "Automatically clicks the Skip Intro and Skip Credits buttons on Crunchyroll.",
+    "permissions": ["scripting", "activeTab", "storage"],
+    "host_permissions": [
+        "https://www.crunchyroll.com/*",
+        "https://static.crunchyroll.com/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "48": "icon.png"
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.crunchyroll.com/*"],
+            "js": ["script.js"],
+            "run_at": "document_idle"
+        },
+        {
+            "matches": ["https://static.crunchyroll.com/*"],
+            "js": ["iframeScript.js"],
+            "all_frames": true,
+            "run_at": "document_idle"
+        }
+    ],
+    "icons": {
+        "48": "icon.png"
+    }
+}
