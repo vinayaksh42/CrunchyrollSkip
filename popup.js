@@ -1,15 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
     const toggleButton = document.getElementById("toggleButton");
+    const statusBadge = document.getElementById("statusBadge");
+
+    function renderState(isEnabled) {
+        toggleButton.textContent = isEnabled ? "Disable Auto-Skip" : "Enable Auto-Skip";
+        toggleButton.classList.toggle("off", !isEnabled);
+
+        if (statusBadge) {
+            statusBadge.textContent = isEnabled ? "Status: ON" : "Status: OFF";
+            statusBadge.classList.toggle("on", isEnabled);
+            statusBadge.classList.toggle("off", !isEnabled);
+        }
+    }
 
     // Get stored setting
     chrome.storage.sync.get("autoSkipEnabled", (data) => {
-        if (data.autoSkipEnabled) {
-            toggleButton.textContent = "Disable Auto-Skip";
-            toggleButton.classList.remove("off");
-        } else {
-            toggleButton.textContent = "Enable Auto-Skip";
-            toggleButton.classList.add("off");
-        }
+        renderState(Boolean(data.autoSkipEnabled));
     });
 
     // Toggle button click event
@@ -18,8 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const newStatus = !data.autoSkipEnabled;
             chrome.storage.sync.set({ autoSkipEnabled: newStatus });
 
-            toggleButton.textContent = newStatus ? "Disable Auto-Skip" : "Enable Auto-Skip";
-            toggleButton.classList.toggle("off", !newStatus);
+            renderState(newStatus);
 
             // Send message to content script to enable/disable the feature
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

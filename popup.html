@@ -3,33 +3,144 @@
 <head>
     <title>Crunchyroll Auto-Skip</title>
     <style>
+        :root {
+            --bg-1: #1c1232;
+            --bg-2: #2f184f;
+            --accent-1: #ff7a18;
+            --accent-2: #ffb347;
+            --on-color: #20e3b2;
+            --off-color: #ff6b81;
+            --text-main: #ffffff;
+            --text-soft: #d7cbf4;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            width: 200px;
-            padding: 10px;
-            text-align: center;
+            margin: 0;
+            width: 280px;
+            min-height: 220px;
+            padding: 14px;
+            color: var(--text-main);
+            font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+            background: radial-gradient(circle at top right, #3f2573 0%, #1a0f2e 50%, #10081f 100%);
         }
+
+        .card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 14px;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+        }
+
+        .title-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .logo-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, var(--accent-2), var(--accent-1));
+            box-shadow: 0 0 12px rgba(255, 148, 38, 0.8);
+            animation: pulse 1.8s infinite ease-in-out;
+        }
+
         h2 {
-            font-size: 16px;
+            font-size: 18px;
+            margin: 0;
+            letter-spacing: 0.3px;
         }
+
+        .subtitle {
+            margin: 0 0 12px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-soft);
+        }
+
+        .status {
+            width: fit-content;
+            margin: 0 auto 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0.2px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .status.on {
+            color: var(--on-color);
+            box-shadow: 0 0 12px rgba(32, 227, 178, 0.25);
+        }
+
+        .status.off {
+            color: var(--off-color);
+            box-shadow: 0 0 12px rgba(255, 107, 129, 0.2);
+        }
+
         button {
-            background-color: #ff8c00;
-            color: white;
+            color: #fff;
             border: none;
-            padding: 10px;
+            padding: 12px;
             cursor: pointer;
             width: 100%;
-            border-radius: 5px;
+            border-radius: 10px;
             font-size: 14px;
+            font-weight: bold;
+            transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            box-shadow: 0 7px 16px rgba(255, 140, 0, 0.35);
         }
+
+        button:hover {
+            filter: brightness(1.07);
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
         button.off {
-            background-color: #ccc;
+            background: linear-gradient(135deg, #566270, #3f4752);
+            box-shadow: 0 7px 16px rgba(0, 0, 0, 0.35);
+        }
+
+        .hint {
+            margin: 10px 0 0;
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-soft);
+            opacity: 0.9;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0.85; }
         }
     </style>
 </head>
 <body>
-    <h2>Crunchyroll Auto-Skip</h2>
-    <button id="toggleButton">Enable Auto-Skip</button>
+    <div class="card">
+        <div class="title-row">
+            <span class="logo-dot" aria-hidden="true"></span>
+            <h2>Crunchyroll Auto-Skip</h2>
+        </div>
+        <p class="subtitle">Skip recaps, intros, and keep the binge flowing.</p>
+        <div id="statusBadge" class="status off">Status: OFF</div>
+        <button id="toggleButton">Enable Auto-Skip</button>
+        <p class="hint">Tip: Keep this ON for hands-free skipping.</p>
+    </div>
     <script src="popup.js"></script>
 </body>
 </html>
