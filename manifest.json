@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Crunchyroll Auto-Skip",
+    "name": "CrunchySkip",
     "version": "1.1",
     "description": "Automatically clicks the Skip Intro and Skip Credits buttons on Crunchyroll.",
     "permissions": ["scripting", "activeTab", "storage"],
